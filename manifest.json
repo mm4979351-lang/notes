@@ -1,0 +1,54 @@
+{
+  "name": "ProNotes - Enterprise Notes App",
+  "short_name": "ProNotes",
+  "description": "Advanced professional notes with encryption, analytics, offline support. Responsive on all devices.",
+  "version": "2.0",
+  "theme_color": "#6366f1",
+  "background_color": "#f8fafc",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "start_url": "./index.html",
+  "scope": "./",
+  "categories": ["productivity", "utilities", "notes"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9Ijk2IiBjeT0iOTYiIHI9Ijk2IiBmaWxsPSIjNjM2NmYxIi8+Cjx0ZXh0IHg9Ijk2IiB5PSIxMjAiIGZvbnQtZmFtaWx5PSJBcHBsZVN5c3RlbSwgLW1zLXRlc3R5LCBTeXN0ZW0tZm9udCwgRW1icm9zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9Ijc0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPt4g8J+KsDwvdGV4dD4KPC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjU2IiBmaWxsPSIjNjM2NmYxIi8+Cjx0ZXh0IHg9IjI1NiIgeT0iMzIwIiBmb250LWZhbWlseT0iQXBwbGUgU3lzdGVtLCAtbXNoaWZ0LCBTeXN0ZW0tZm9udCwgRW1icm9zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIj7yIDx0ZXh0PjwvdGV4dD4KPC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==",
+      "sizes": "1333x750",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "New Note",
+      "short_name": "New Note",
+      "description": "Create new note (Ctrl+N)",
+      "url": "./index.html#new",
+      "icons": [{"src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI0OCIgY3k9IjQ4IiByPSI0OCIgZmlsbD0iIzYzNjZmMSIvPjxwYXRoIGQ9Ik0yNCAzMmg0OHY0OUgyNFoiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTQ4IDU0SDI0VjM4SDQ4WiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=", "size": "96x96"}]
+    },
+    {
+      "name": "Settings",
+      "short_name": "Settings",
+      "description": "App settings",
+      "url": "./index.html#settings",
+      "icons": [{"src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI0OCIgY3k9IjQ4IiByPSI0OCIgZmlsbD0iIzYzNjZmMSIvPjxwYXRoIGQ9Ik0yMCAyMGgzNHYzMkgyMFoiIGZpbGw9IndoaXRlIi8+PGNpcmNsZSBjeD0iNDgiIGN5PSI0OCIgcj0iOCIgZmlsbD0id2hpdGUiLz48L3N2Zz4=", "size": "96x96"}]
+    }
+  ]
+}

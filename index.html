@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ProNotes - Enterprise Notes App</title>
+        <meta name="description"
+            content="Advanced professional notes application with encryption, PWA, analytics">
+        <link rel="manifest" href="manifest.json">
+        <link rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+        <meta name="theme-color" content="#6366f1">
+        <link rel="stylesheet" href="style.css">
+        <style>/* Critical inline CSS for FCP <100ms */ body{font-family:system-ui,-apple-system,sans-serif;margin:0;background:#f8fafc;color:#1e293b;line-height:1.6} #app{display:grid;grid-template-columns:300px 1fr;grid-template-rows:auto 1fr auto;height:100vh}@media(max-width:768px){#app{grid-template-columns:1fr;grid-template-rows:60px 1fr auto;height:100vh}}</style>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Header -->
+            <header class="header">
+                <h1><span role="img" aria-label="Note">📝</span> ProNotes
+                    Pro</h1>
+                <div class="header-actions">
+                    <button id="new-note" aria-label="New Note (Ctrl+N)"
+                        title="Ctrl+N">+ New</button>
+                    <button id="search-toggle" aria-label="Search">🔍</button>
+                    <button id="settings-toggle"
+                        aria-label="Settings">⚙️</button>
+                </div>
+            </header>
+
+            <!-- Sidebar: Notes List + Stats -->
+            <aside class="sidebar" id="sidebar">
+                <div class="search-container" id="search-container"
+                    style="display:none;">
+                    <input type="text" id="search-input"
+                        placeholder="Search notes... (live filter)"
+                        autocomplete="off">
+                </div>
+                <div class="stats-dashboard">
+                    <div class="stat">Total: <span
+                            id="total-notes">0</span></div>
+                    <div class="stat">Storage: <span
+                            id="storage-usage">0%</span></div>
+                    <canvas id="activity-chart" width="280" height="80"
+                        aria-label="Activity graph"></canvas>
+                </div>
+                <ul id="notes-list" class="notes-list" role="list"
+                    aria-label="Notes list - drag to reorder"></ul>
+                <div class="categories-filter">
+                    <label>Filter: <select
+                            id="category-filter"><option>All</option></select></label>
+                </div>
+            </aside>
+
+            <!-- Main Editor Area -->
+            <main class="main">
+                <div class="editor-container" id="editor-container">
+                    <div contenteditable="true" id="note-editor"
+                        class="note-editor"
+                        placeholder="Start typing your note... (Supports bold, italic, lists - format toolbar below)"
+                        maxlength="5000" spellcheck="true" role="textbox"
+                        aria-label="Rich text editor - auto-saves"></div>
+                    <div class="editor-toolbar">
+                        <button type="button"
+                            onclick="document.execCommand('bold')"
+                            aria-label="Bold">B</button>
+                        <button type="button"
+                            onclick="document.execCommand('italic')"
+                            aria-label="Italic">I</button>
+                        <button type="button"
+                            onclick="document.execCommand('insertUnorderedList')"
+                            aria-label="Bullet list">•</button>
+                        <button type="button"
+                            onclick="document.execCommand('insertOrderedList')"
+                            aria-label="Number list">1.</button>
+                        <button id="save-draft" aria-label="Save (Ctrl+S)">💾
+                            Save</button>
+                    </div>
+                    <div class="note-meta">
+                        <span id="note-title"></span> | <span
+                            id="note-timestamp"></span> | <span
+                            id="char-count">0/5000</span>
+                        <select id="note-category">
+                            <option value="default">#6366f1</option>
+                            <option value="work">#10b981</option>
+                            <option value="personal">#f59e0b</option>
+                            <option value="idea">#8b5cf6</option>
+                        </select>
+                    </div>
+                    <div class="note-actions">
+                        <button id="delete-note" aria-label="Delete (Esc)">🗑️
+                            Delete</button>
+                        <button id="export-note">📤 Export</button>
+                        <button id="undo-delete" style="display:none;">↶
+                            Undo</button>
+                    </div>
+                </div>
+                <div class="no-note" id="no-note">
+                    <span role="img" aria-label="no notes">📭</span>
+                    <p>Select a note or create new (Ctrl+N)</p>
+                </div>
+            </main>
+
+            <!-- Global Footer -->
+            <footer class="footer">
+                <small>ProNotes v2.0 | Encrypted Storage | PWA Offline | <span
+                        id="theme-toggle">🌙 Dark</span> | Ctrl+? Help</small>
+            </footer>
+        </div>
+
+        <!-- Settings Modal -->
+        <dialog id="settings-modal" class="modal">
+            <div class="modal-content">
+                <h2>⚙️ Advanced Settings</h2>
+                <label>Theme: <select
+                        id="theme-select"><option>light</option><option>dark</option><option>auto</option></select></label>
+                <label>Auto-save: <select
+                        id="autosave-interval"><option>1s</option><option>5s</option><option>30s</option></select></label>
+                <label>Max Notes: <select
+                        id="max-notes"><option>∞</option><option>50</option><option>100</option></select></label>
+                <label>Password Protect: <input type="password"
+                        id="storage-password"
+                        placeholder="Enable encryption"></label>
+                <label>Incognito Mode: <input type="checkbox"
+                        id="incognito-mode"></label>
+                <button id="custom-css">Custom CSS</button>
+                <button id="export-all">Export All</button>
+                <button id="import-data">Import</button>
+                <button id="reset-app">Reset</button>
+                <button id="close-settings">Close</button>
+            </div>
+        </dialog>
+
+        <!-- Preview Hover Card -->
+        <div id="preview-card" class="preview-card" style="display:none;"></div>
+
+        <!-- Loading Skeleton -->
+        <div id="loading-skeleton" class="skeleton" style="display:none;">
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
+        </div>
+
+        <script src="crypto.js"></script>
+        <script src="app.js"></script>
+        <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');</script>
+    </body>
+</html>
